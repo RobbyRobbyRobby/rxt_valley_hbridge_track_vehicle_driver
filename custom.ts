@@ -23,7 +23,7 @@ namespace DualChannelFullHMovement
             this.rightForward = rightChanForwardPin;
             this.rightBackward = rightChanBackwardPin;
 
-            this.defaultPower = 522;
+            this.defaultPower = 512;
 
             pins.analogSetPeriod(this.leftForward,20000);
             pins.analogSetPeriod(this.leftBackward,20000);
@@ -87,7 +87,7 @@ namespace DualChannelFullHMovement
     * Set the default power for all actions
     */
     //% block="Set Default Power for $controller to $power"
-    //% power.min=0 power.max=1023 power.defl=522
+    //% power.min=0 power.max=1023 power.defl=512
     export function SetDefaultPower(controller: MotorController, power: number=512)
     {
         if (power != null &&
@@ -115,7 +115,7 @@ namespace DualChannelFullHMovement
     //% @param direction - The direction to turn
     //% @param motors - Which motor channel to use for turn 
     //% @param power - Power, or speed, to use in turn  
-    //% power.min=0 power.max=1023
+    //% power.min=0 power.max=1023 power.defl=512
     //% blockId=turnVehicle 
     //% block="on $controller Turn $direction using $motors channel(s) with power $power"
     //% expandableArgumentMode="toggle" 
@@ -123,7 +123,7 @@ namespace DualChannelFullHMovement
         controller: MotorController, 
         direction: TurnDirection, 
         motors: MotorChannelSelection, 
-        power: number): void 
+        power: number=512): void 
     {
 
         if (power == null || power == 0)
@@ -196,14 +196,14 @@ namespace DualChannelFullHMovement
     */     
     //% @param direction - The direction to move
     //% @param power - Power, or speed, to use in turn
-    //% power.min=0 power.max=1023
+    //% power.min=0 power.max=1023 power.defl=512
     //% blockId=driveVehicle 
     //% block="on $controller Drive $direction with power $power"
     //% expandableArgumentMode="toggle" 
     export function Move(
         controller: MotorController, 
         direction: MoveDirection, 
-        power: number): void 
+        power: number=512): void 
     {
             
         if (power == null || power == 0)
