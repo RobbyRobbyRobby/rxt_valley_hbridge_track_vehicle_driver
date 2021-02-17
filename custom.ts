@@ -4,14 +4,13 @@
 //% weight=100 color=#8A2BE2 icon=""
 namespace DualChannelFullHMovement 
 {
-
     export class MotorController 
     {
-        _leftForward: AnalogPin;
-        _leftBackward: AnalogPin;
-        _rightForward: AnalogPin;
-        _rightBackward: AnalogPin;
-        _defaultPower: number;
+        leftForward: AnalogPin;
+        leftBackward: AnalogPin;
+        rightForward: AnalogPin;
+        rightBackward: AnalogPin;
+        defaultPower: number;
 
         constructor (
             leftChanForwardPin: AnalogPin, 
@@ -19,22 +18,17 @@ namespace DualChannelFullHMovement
             rightChanForwardPin: AnalogPin, 
             rightChanBackwardPin: AnalogPin)
         {
-            this._leftForward = leftChanForwardPin;
-            this._leftBackward = leftChanBackwardPin;
-            this._rightForward = rightChanForwardPin;
-            this._rightBackward = rightChanBackwardPin;
+            this.leftForward = leftChanForwardPin;
+            this.leftBackward = leftChanBackwardPin;
+            this.rightForward = rightChanForwardPin;
+            this.rightBackward = rightChanBackwardPin;
 
-            this._defaultPower = 522;
+            this.defaultPower = 522;
 
-            pins.analogSetPeriod(this._leftForward,20000);
-            pins.analogSetPeriod(this._leftBackward,20000);
-            pins.analogSetPeriod(this._rightForward,20000);
-            pins.analogSetPeriod(this._rightBackward,20000);
-        }
-
-        get DefaultPower () 
-        {
-            return this._defaultPower;
+            pins.analogSetPeriod(this.leftForward,20000);
+            pins.analogSetPeriod(this.leftBackward,20000);
+            pins.analogSetPeriod(this.rightForward,20000);
+            pins.analogSetPeriod(this.rightBackward,20000);
         }
     }
     
@@ -43,16 +37,13 @@ namespace DualChannelFullHMovement
     * This means analog control forwards and backwards on each of two channels (left and right)
     * Configure the pins used; one for each left forward, left backward, right forward, right backward.
     */
-    //% block="New Motor Controller Left Fwd pin = $leftChanPinA Left Bck pin = %leftChanPinB Right Fwd pin = $rightChanPinA Right Bck pin = $rightChanPinB"
+    //% block="New Motor Controller Left Forward pin = $leftChanForwardPin Left Back pin = $leftChanBackwardPin Right Forward pin = $rightChanForwardPin Right Back pin = $rightChanBackwardPin"
     //% @param leftChanForwardPin = Left Forward
     //% @param leftChanBackwardPin = Left Backward
     //% @param rightChanForwardPin = Right Forward
     //% @param rightChanBackwardPin = Right Backward
     //% blockSetVariable=movementController
-    //% leftChanForwardPin.defl=AnalogPin.P1
-    //% leftChanBackwardPin.defl=AnalogPin.P2
-    //% rightChanForwardPin.defl=AnalogPin.P3
-    //% rightChanBackwardPin.defl=AnalogPin.P4
+    //% leftChanForwardPin.defl=AnalogPin.P1 leftChanBackwardPin.defl=AnalogPin.P2 rightChanForwardPin.defl=AnalogPin.P3 rightChanBackwardPin.defl=AnalogPin.P4
     export function SetupMotorController(
         leftChanForwardPin: AnalogPin, 
         leftChanBackwardPin: AnalogPin, 
@@ -103,7 +94,7 @@ namespace DualChannelFullHMovement
             power >= 0 &&
             power <= 1023)
         {
-            controller._defaultPower = power;
+            controller.defaultPower = power;
         }
     }
         
@@ -113,7 +104,7 @@ namespace DualChannelFullHMovement
     //% block="Get Default Power for $controller"
     export function GetDefaultPower(controller: MotorController) : number
     {
-        return controller._defaultPower;
+        return controller.defaultPower;
     }
 
     /** 
@@ -137,7 +128,7 @@ namespace DualChannelFullHMovement
 
         if (power == null || power == 0)
         {
-            power = controller.DefaultPower;
+            power = controller.defaultPower;
         }
 
         switch (direction)
@@ -148,24 +139,24 @@ namespace DualChannelFullHMovement
                 {
                     case MotorChannelSelection.Left:
                     {
-                        pins.analogWritePin(controller._leftForward, 0); 
-                        pins.analogWritePin(controller._leftBackward, power); 
-                        pins.analogWritePin(controller._rightForward, 0); 
-                        pins.analogWritePin(controller._rightBackward, 0);                            
+                        pins.analogWritePin(controller.leftForward, 0); 
+                        pins.analogWritePin(controller.leftBackward, power); 
+                        pins.analogWritePin(controller.rightForward, 0); 
+                        pins.analogWritePin(controller.rightBackward, 0);                            
                     }
                     case MotorChannelSelection.Right:
                     {
-                        pins.analogWritePin(controller._leftForward, 0); 
-                        pins.analogWritePin(controller._leftBackward, 0); 
-                        pins.analogWritePin(controller._rightForward, power); 
-                        pins.analogWritePin(controller._rightBackward, 0); 
+                        pins.analogWritePin(controller.leftForward, 0); 
+                        pins.analogWritePin(controller.leftBackward, 0); 
+                        pins.analogWritePin(controller.rightForward, power); 
+                        pins.analogWritePin(controller.rightBackward, 0); 
                     }
                     case MotorChannelSelection.Both:
                     {
-                        pins.analogWritePin(controller._leftForward, 0); 
-                        pins.analogWritePin(controller._leftBackward, power); 
-                        pins.analogWritePin(controller._rightForward, power); 
-                        pins.analogWritePin(controller._rightBackward, 0);
+                        pins.analogWritePin(controller.leftForward, 0); 
+                        pins.analogWritePin(controller.leftBackward, power); 
+                        pins.analogWritePin(controller.rightForward, power); 
+                        pins.analogWritePin(controller.rightBackward, 0);
                     }
                 }
             }
@@ -175,24 +166,24 @@ namespace DualChannelFullHMovement
                 {
                     case MotorChannelSelection.Left:
                     {
-                        pins.analogWritePin(controller._leftForward, power); 
-                        pins.analogWritePin(controller._leftBackward, 0); 
-                        pins.analogWritePin(controller._rightForward, 0); 
-                        pins.analogWritePin(controller._rightBackward, 0);
+                        pins.analogWritePin(controller.leftForward, power); 
+                        pins.analogWritePin(controller.leftBackward, 0); 
+                        pins.analogWritePin(controller.rightForward, 0); 
+                        pins.analogWritePin(controller.rightBackward, 0);
                     }
                     case MotorChannelSelection.Right:
                     {
-                        pins.analogWritePin(controller._leftForward, 0); 
-                        pins.analogWritePin(controller._leftBackward, 0); 
-                        pins.analogWritePin(controller._rightForward, 0); 
-                        pins.analogWritePin(controller._rightBackward, power);
+                        pins.analogWritePin(controller.leftForward, 0); 
+                        pins.analogWritePin(controller.leftBackward, 0); 
+                        pins.analogWritePin(controller.rightForward, 0); 
+                        pins.analogWritePin(controller.rightBackward, power);
                     }
                     case MotorChannelSelection.Both:
                     {
-                        pins.analogWritePin(controller._leftForward, power); 
-                        pins.analogWritePin(controller._leftBackward, 0); 
-                        pins.analogWritePin(controller._rightForward, 0); 
-                        pins.analogWritePin(controller._rightBackward, power);
+                        pins.analogWritePin(controller.leftForward, power); 
+                        pins.analogWritePin(controller.leftBackward, 0); 
+                        pins.analogWritePin(controller.rightForward, 0); 
+                        pins.analogWritePin(controller.rightBackward, power);
                     }
                 }
             }
@@ -217,24 +208,24 @@ namespace DualChannelFullHMovement
             
         if (power == null || power == 0)
         {
-            power = controller.DefaultPower;
+            power = controller.defaultPower;
         }
             
         switch (direction)
         {
             case MoveDirection.Forward:
             {
-                pins.analogWritePin(controller._leftForward, power); 
-                pins.analogWritePin(controller._leftBackward, 0); 
-                pins.analogWritePin(controller._rightForward, power); 
-                pins.analogWritePin(controller._rightBackward, 0);
+                pins.analogWritePin(controller.leftForward, power); 
+                pins.analogWritePin(controller.leftBackward, 0); 
+                pins.analogWritePin(controller.rightForward, power); 
+                pins.analogWritePin(controller.rightBackward, 0);
             }
             case MoveDirection.Backward:
             {
-                pins.analogWritePin(controller._leftForward, 0); 
-                pins.analogWritePin(controller._leftBackward, power); 
-                pins.analogWritePin(controller._rightForward, 0); 
-                pins.analogWritePin(controller._rightBackward, power);
+                pins.analogWritePin(controller.leftForward, 0); 
+                pins.analogWritePin(controller.leftBackward, power); 
+                pins.analogWritePin(controller.rightForward, 0); 
+                pins.analogWritePin(controller.rightBackward, power);
             }
         }
     }
@@ -275,10 +266,10 @@ namespace DualChannelFullHMovement
     //% block="on $controller Stop motor power on both channels" 
     export function FullStop(controller: MotorController): void 
     {
-        pins.analogWritePin(controller._leftForward, 1); 
-        pins.analogWritePin(controller._leftBackward, 1); 
-        pins.analogWritePin(controller._rightForward, 0); 
-        pins.analogWritePin(controller._rightBackward, 0);
+        pins.analogWritePin(controller.leftForward, 0); 
+        pins.analogWritePin(controller.leftBackward, 0); 
+        pins.analogWritePin(controller.rightForward, 0); 
+        pins.analogWritePin(controller.rightBackward, 0);
     }
 }
 
