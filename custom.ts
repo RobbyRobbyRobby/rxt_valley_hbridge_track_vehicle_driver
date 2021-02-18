@@ -25,10 +25,10 @@ namespace DualChannelFullHMovement
 
             this.defaultPower = 512;
 
-            pins.analogSetPeriod(this.leftForward,10000);
-            pins.analogSetPeriod(this.leftBackward,10000);
-            pins.analogSetPeriod(this.rightForward,10000);
-            pins.analogSetPeriod(this.rightBackward,10000);
+            pins.analogSetPeriod(this.leftForward,20000);
+            pins.analogSetPeriod(this.leftBackward,20000);
+            pins.analogSetPeriod(this.rightForward,20000);
+            pins.analogSetPeriod(this.rightBackward,20000);
         }
     }
     
