@@ -7,7 +7,7 @@ input.onButtonPressed(Button.B, function () {
 let movementController: DualChannelFullHMovement.MotorController = null
 movementController = DualChannelFullHMovement.SetupMotorController(
 AnalogPin.P1,
-AnalogPin.P9,
-AnalogPin.P10,
-AnalogPin.P15
+AnalogPin.P2,
+AnalogPin.P3,
+AnalogPin.P4
 )

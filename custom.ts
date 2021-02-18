@@ -25,10 +25,10 @@ namespace DualChannelFullHMovement
 
             this.defaultPower = 512;
 
-            pins.analogSetPeriod(this.leftForward,20000);
-            pins.analogSetPeriod(this.leftBackward,20000);
-            pins.analogSetPeriod(this.rightForward,20000);
-            pins.analogSetPeriod(this.rightBackward,20000);
+            pins.analogSetPeriod(this.leftForward,10000);
+            pins.analogSetPeriod(this.leftBackward,10000);
+            pins.analogSetPeriod(this.rightForward,10000);
+            pins.analogSetPeriod(this.rightBackward,10000);
         }
     }
     
@@ -142,7 +142,8 @@ namespace DualChannelFullHMovement
                         pins.analogWritePin(controller.leftForward, 0); 
                         pins.analogWritePin(controller.leftBackward, power); 
                         pins.analogWritePin(controller.rightForward, 0); 
-                        pins.analogWritePin(controller.rightBackward, 0);                            
+                        pins.analogWritePin(controller.rightBackward, 0); 
+                        break;                           
                     }
                     case MotorChannelSelection.Right:
                     {
@@ -150,6 +151,7 @@ namespace DualChannelFullHMovement
                         pins.analogWritePin(controller.leftBackward, 0); 
                         pins.analogWritePin(controller.rightForward, power); 
                         pins.analogWritePin(controller.rightBackward, 0); 
+                        break;
                     }
                     case MotorChannelSelection.Both:
                     {
@@ -157,6 +159,7 @@ namespace DualChannelFullHMovement
                         pins.analogWritePin(controller.leftBackward, power); 
                         pins.analogWritePin(controller.rightForward, power); 
                         pins.analogWritePin(controller.rightBackward, 0);
+                        break;
                     }
                 }
             }
@@ -170,6 +173,7 @@ namespace DualChannelFullHMovement
                         pins.analogWritePin(controller.leftBackward, 0); 
                         pins.analogWritePin(controller.rightForward, 0); 
                         pins.analogWritePin(controller.rightBackward, 0);
+                        break;
                     }
                     case MotorChannelSelection.Right:
                     {
@@ -177,6 +181,7 @@ namespace DualChannelFullHMovement
                         pins.analogWritePin(controller.leftBackward, 0); 
                         pins.analogWritePin(controller.rightForward, 0); 
                         pins.analogWritePin(controller.rightBackward, power);
+                        break;
                     }
                     case MotorChannelSelection.Both:
                     {
@@ -184,6 +189,7 @@ namespace DualChannelFullHMovement
                         pins.analogWritePin(controller.leftBackward, 0); 
                         pins.analogWritePin(controller.rightForward, 0); 
                         pins.analogWritePin(controller.rightBackward, power);
+                        break;
                     }
                 }
             }
@@ -219,6 +225,7 @@ namespace DualChannelFullHMovement
                 pins.analogWritePin(controller.leftBackward, 0); 
                 pins.analogWritePin(controller.rightForward, power); 
                 pins.analogWritePin(controller.rightBackward, 0);
+                break;
             }
             case MoveDirection.Backward:
             {
@@ -226,6 +233,7 @@ namespace DualChannelFullHMovement
                 pins.analogWritePin(controller.leftBackward, power); 
                 pins.analogWritePin(controller.rightForward, 0); 
                 pins.analogWritePin(controller.rightBackward, power);
+                break;
             }
         }
     }
@@ -246,14 +254,17 @@ namespace DualChannelFullHMovement
             case MotorChannelSelection.Left:
             {
 
+                break;
             }
             case MotorChannelSelection.Right:
             {
 
+                break;
             }
             case MotorChannelSelection.Both:
             {
 
+                break;
             }
         }
     }
